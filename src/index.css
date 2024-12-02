@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .card {
+    @apply bg-gray-800 rounded-lg p-4;
+  }
+  
+  .search-bar {
+    @apply w-full bg-gray-800 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text;
+  }
+}
+
+body {
+  @apply bg-gray-900 text-white;
+}
