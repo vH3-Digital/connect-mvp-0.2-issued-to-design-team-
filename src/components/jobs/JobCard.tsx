@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Clock, MapPin, User, Calendar, ChevronRight, Wrench } from 'lucide-react';
-import { format } from 'date-fns';
+import { format, parseISO, differenceInMinutes } from 'date-fns';
 import { Job } from '../../types/jobs';
 import { JobModal } from './JobModal';
 
@@ -23,6 +23,47 @@ export const JobCard: React.FC<JobCardProps> = ({ job }) => {
   const formatDate = (dateString: string) => {
     return format(new Date(dateString), 'dd MMM yyyy HH:mm');
   };
+
+  const calculateTimeDifference = () => {
+    if (!job.RealStart || !job.RealEnd) return null;
+    
+    const actualMinutes = differenceInMinutes(
+      parseISO(job.RealEnd),
+      parseISO(job.RealStart)
+    );
+    
+    const plannedDuration = job.Duration.split(':');
+    const plannedMinutes = parseInt(plannedDuration[0]) * 60 + parseInt(plannedDuration[1]);
+    
+    const difference = actualMinutes - plannedMinutes;
+    const color = difference > 0 ? 'text-red-400' : 'text-green-400';
+    
+    return {
+      actual: actualMinutes,
+      planned: plannedMinutes,
+      difference,
+      color
+    };
+  };
+
+  const calculateStartDifference = () => {
+    if (!job.RealStart || !job.PlannedStart) return null;
+
+    const difference = differenceInMinutes(
+      parseISO(job.RealStart),
+      parseISO(job.PlannedStart)
+    );
+
+    const color = difference > 0 ? 'text-red-400' : 'text-green-400';
+
+    return {
+      difference,
+      color
+    };
+  };
+
+  const timeDiff = calculateTimeDifference();
+  const startDiff = calculateStartDifference();
 
   return (
     <>
@@ -55,14 +96,36 @@ export const JobCard: React.FC<JobCardProps> = ({ job }) => {
                 <span className="truncate">{job.Resource}</span>
               </div>
 
-              <div className="flex items-center gap-2 text-sm text-gray-400">
-                <Calendar className="w-4 h-4" />
-                <span>{formatDate(job.PlannedStart)}</span>
+              <div className="flex items-center gap-2 text-sm">
+                <Calendar className="w-4 h-4 text-gray-400" />
+                {job.RealStart ? (
+                  <>
+                    <span className="text-gray-400">Started: {formatDate(job.RealStart)}</span>
+                    {startDiff && (
+                      <span className={startDiff.color}>
+                        ({startDiff.difference > 0 ? '+' : ''}{startDiff.difference} mins from planned)
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <span className="text-gray-400">Planned: {formatDate(job.PlannedStart)}</span>
+                )}
               </div>
 
-              <div className="flex items-center gap-2 text-sm text-gray-400">
-                <Clock className="w-4 h-4" />
-                <span>{job.Duration}</span>
+              <div className="flex items-center gap-2 text-sm">
+                <Clock className="w-4 h-4 text-gray-400" />
+                {timeDiff ? (
+                  <>
+                    <span className="text-gray-400">
+                      Duration: {Math.floor(timeDiff.actual / 60)}:{String(timeDiff.actual % 60).padStart(2, '0')}
+                    </span>
+                    <span className={timeDiff.color}>
+                      ({timeDiff.difference > 0 ? '+' : ''}{timeDiff.difference} mins from planned)
+                    </span>
+                  </>
+                ) : (
+                  <span className="text-gray-400">Duration: {job.Duration}</span>
+                )}
               </div>
             </div>
 
