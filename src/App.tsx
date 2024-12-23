@@ -1,15 +1,13 @@
 import React from 'react';
 import { useAuth } from './contexts/AuthContext';
 import { Auth } from './components/Auth';
-import { Dashboard } from './components/Dashboard';
 import { KnowledgeBase } from './components/KnowledgeBase';
 import { Agents } from './components/Agents';
 import { Engineers } from './components/Engineers';
 import { Resources } from './components/Resources';
 import { MessageCard } from './components/MessageCard';
-import { ChatPanel } from './components/ChatPanel';
+// import { ChatPanel } from './components/ChatPanel';
 import { SettingsPanel } from './components/SettingsPanel';
-import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { BulletinsPanel } from './components/BulletinsPanel';
 import { LoadingScreen } from './components/LoadingScreen';
@@ -18,8 +16,10 @@ import { Workflows } from './components/Workflows';
 import { Chats } from './components/Chats';
 import { Integrations } from './components/Integrations';
 import { SalesPerformance } from './components/sales/SalesPerformance';
-import { JobsPanel } from './components/jobs/JobsPanel';
 import { messages } from './data';
+import { Sidebar } from './widgets/sidebar/sidebar';
+import { Jobs } from './pages/jobs/jobs';
+import { Dashboard } from './pages/dashboard/dashboard';
 
 const mockSalesData = {
   related_sales_opportunities: [],
@@ -49,7 +49,7 @@ export function App() {
       case 'dashboard':
         return <Dashboard />;
       case 'jobs':
-        return <JobsPanel />;
+        return <Jobs />;
       case 'bulletins':
         return <BulletinsPanel />;
       case 'engineers':
@@ -94,19 +94,13 @@ export function App() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-900 text-white">
+    <div className="flex h-screen bg-background text-white">
       <Sidebar onNavigate={setActiveView} activeView={activeView} />
       <div className="flex-1 flex flex-col min-w-0">
         <Header />
         <main className="flex-1 overflow-hidden">
           <div className="h-full overflow-y-auto p-6">
-            <div className="mb-8">
-              <img 
-                src="https://cdn.prod.website-files.com/66f62ac0b4dbc96bb348eb73/66f646494a2921204a349922_vh3-connect-logo-p-500.png"
-                alt="VH3 CONNECT"
-                className="h-8"
-              />
-            </div>
+  
             {renderContent()}
           </div>
         </main>

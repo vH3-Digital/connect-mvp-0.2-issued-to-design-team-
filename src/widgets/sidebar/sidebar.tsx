@@ -20,8 +20,9 @@ import {
   TrendingUp,
   ClipboardList,
 } from "lucide-react";
-import { UserProfile } from "./UserProfile";
-import { useAuth } from "../contexts/AuthContext";
+import { AnimatePresence, motion } from "framer-motion";
+import { useAuth } from "../../contexts/AuthContext";
+import { UserProfile } from "./components/user-profile";
 
 interface SidebarProps {
   onNavigate: (view: string) => void;
@@ -79,7 +80,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNavigate, activeView }) => {
       </button>
       <aside
         className={`
-        fixed lg:static inset-y-0 left-0 z-40 w-64 bg-sidebar border-sidebar_border p-4
+        fixed lg:static inset-y-0 left-0 z-40 w-64 bg-bgSecondary p-4 flex flex-col justify-between
         transform transition-transform duration-300 ease-in-out
         ${
           isMobileMenuOpen
@@ -88,46 +89,40 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNavigate, activeView }) => {
         }
       `}
       >
-        <div className="flex items-center gap-3 px-2 py-4">
-          <div className="relative">
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 via-cyan-500 to-blue-500 rounded-xl flex items-center justify-center transform rotate-12">
-              <Hexagon className="w-6 h-6 text-white transform -rotate-12" />
-            </div>
-            <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-cyan-500 rounded-full border-2 border-gray-900" />
+        <div className="">
+          <div className="w-full p-4 flex items-center justify-center">
+            <img
+              src="https://cdn.prod.website-files.com/66f62ac0b4dbc96bb348eb73/66f646494a2921204a349922_vh3-connect-logo-p-500.png"
+              alt="VH3 CONNECT"
+              className="h-full w-full object-contain"
+            />
           </div>
-          <div>
-            <div className="text-lg font-bold bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-400 text-transparent bg-clip-text">
-              {user?._company?.name || "Loading..."}
-            </div>
-            <div className="text-xs text-gray-400">Standard User</div>
-          </div>
+          <nav className="flex-1 mt-6">
+            <ul className="space-y-2">
+              {menuItems.map((item) => (
+                <li key={item.id}>
+                  <button
+                    onClick={() => handleNavigate(item.id)}
+                    className={`w-full flex items-center gap-3 px-2 py-2 rounded-lg text-sm transition-all ${
+                      activeView === item.id
+                        ? "bg-primary/20 text-white"
+                        : "text-gray-400 hover:bg-primary/10"
+                    }`}
+                  >
+                    <item.icon className={`w-5 h-5 ${activeView === item.id ? "text-primary" : "text-gray-400"}`  } />
+                    {item.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
-
-        <nav className="flex-1 mt-6">
-          <ul className="space-y-2">
-            {menuItems.map((item) => (
-              <li key={item.id}>
-                <button
-                  onClick={() => handleNavigate(item.id)}
-                  className={`w-full flex items-center gap-3 px-2 py-2 rounded-lg text-sm ${
-                    activeView === item.id
-                      ? "bg-cyan-500/20 text-cyan-300"
-                      : "text-gray-400 hover:bg-gray-800"
-                  }`}
-                >
-                  <item.icon className="w-5 h-5" />
-                  {item.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
 
         <div className="mt-auto pt-4 border-t border-gray-800">
           {user && (
             <button
               onClick={() => setShowProfile(true)}
-              className="w-full flex items-center gap-3 px-2 py-2 rounded-lg text-sm text-gray-400 hover:bg-gray-800"
+              className="w-full flex items-center gap-3 px-2 py-2 rounded-lg text-sm text-gray-400 transition-all hover:bg-background"
             >
               {user.profile_picture ? (
                 <img
@@ -150,15 +145,19 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNavigate, activeView }) => {
           )}
         </div>
       </aside>
-
       {/* Mobile Overlay */}
-      {isMobileMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-30 lg:hidden"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-      )}
-
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
       <UserProfile isOpen={showProfile} onClose={() => setShowProfile(false)} />
     </>
   );

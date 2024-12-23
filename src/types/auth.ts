@@ -1,4 +1,9 @@
 export interface User {
+  last_name: any;
+  last_name: any;
+  first_name: any;
+  first_name: any;
+  first_name: any;
   id: number;
   email: string;
   name: string;
