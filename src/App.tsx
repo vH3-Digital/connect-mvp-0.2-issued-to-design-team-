@@ -94,9 +94,9 @@ export function App() {
   };
 
   return (
-    <div className="flex h-screen bg-background text-white">
+    <div className="min-h-[100vh] bg-background text-white">
       <Sidebar onNavigate={setActiveView} activeView={activeView} />
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="lg:pl-64">
         <Header />
         <main className="flex-1 overflow-hidden">
           <div className="h-full overflow-y-auto p-6">

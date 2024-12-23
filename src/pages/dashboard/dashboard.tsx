@@ -78,7 +78,7 @@ export const Dashboard = () => {
             ? `${user.first_name} ${user.last_name}'s Dashboard`
             : "Dashboard"}
         </h1>
-        <p className="text-gray-400">Welcome back!</p>
+        <p className="text-white">Welcome back!</p>
       </div>
 
       {/* Error Message */}

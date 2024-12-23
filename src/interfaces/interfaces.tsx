@@ -63,7 +63,6 @@ export interface IJobList {
   searchQuery: string;
   selectedFilters: string[];
 }
-
 export interface IJobModal {
   isOpen: boolean;
   onClose: () => void;

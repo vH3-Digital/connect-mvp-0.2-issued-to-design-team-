@@ -80,7 +80,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNavigate, activeView }) => {
       </button>
       <aside
         className={`
-        fixed lg:static inset-y-0 left-0 z-40 w-64 bg-bgSecondary p-4 flex flex-col justify-between
+        fixed overflow-y-auto no-scrollbar  inset-y-0 left-0 z-40 w-64 bg-bgSecondary p-4 flex flex-col justify-between
         transform transition-transform duration-300 ease-in-out
         ${
           isMobileMenuOpen
