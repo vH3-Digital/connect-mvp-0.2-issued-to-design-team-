@@ -7,7 +7,8 @@ export default {
       colors: {
         background: "#100a21",
         bgSecondary: "#211f30",
-        primary: "#5681F7",
+        primary: "#4B9EF3",
+        // primary: "#5681F7",
         secondary: "#4B9EF3",
         gradOne: "#4B9EF3",
         gradTwo: "#5731C9",

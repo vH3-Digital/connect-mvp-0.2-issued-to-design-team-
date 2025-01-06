@@ -88,3 +88,26 @@ export interface IDashboardStatsCard {
   gradient: string;
 }
 // dashboard end
+export interface IBulletin {
+  id: string;
+  title: string;
+  status: "draft" | "review" | "approved" | "scheduled";
+  priority: "high" | "medium" | "low";
+  createdAt: string;
+  updatedAt: string;
+  assignedTo: string;
+  progress: number;
+  scheduledDate?: string;
+  description?: string;
+  categories?: string[];
+  engineers?: string[];
+  skills?: string[];
+  questions?: string[];
+  answers?: string[];
+  documents?: File[];
+  followUpDays?: number;
+  passRate?: number;
+  reportRecipients?: string[];
+  reportNotes?: string;
+}
+// bulletins end

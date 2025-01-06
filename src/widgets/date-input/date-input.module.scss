@@ -1,0 +1,10 @@
+.date {
+  position: relative;
+  input {
+    width: 100%;
+  }
+  & > div {
+    width: 100%;
+  }
+
+}

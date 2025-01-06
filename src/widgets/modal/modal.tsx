@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { X } from "lucide-react";
 import { IModal } from "../../interfaces/interfaces";
 import { AnimatePresence, motion } from "framer-motion";
@@ -22,6 +22,14 @@ export const Modal: React.FC<IModal> = ({
       onClose();
     }
   };
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [isOpen]);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}

@@ -20,6 +20,7 @@ import { messages } from './data';
 import { Sidebar } from './widgets/sidebar/sidebar';
 import { Jobs } from './pages/jobs/jobs';
 import { Dashboard } from './pages/dashboard/dashboard';
+import { Bulletins } from './pages/bulletins/bulletins';
 
 const mockSalesData = {
   related_sales_opportunities: [],
@@ -51,7 +52,7 @@ export function App() {
       case 'jobs':
         return <Jobs />;
       case 'bulletins':
-        return <BulletinsPanel />;
+        return <Bulletins />;
       case 'engineers':
         return <Engineers />;
       case 'resources':

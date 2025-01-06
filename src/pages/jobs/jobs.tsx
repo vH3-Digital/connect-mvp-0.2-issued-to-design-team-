@@ -11,17 +11,17 @@ export const Jobs: React.FC = () => {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   return (
-    <div className="space-y-6">
+    <>
       {/* Header */}
-      <div>
-        <h2 className="text-2xl font-semibold text-primary mb-2">
+      <div className="mb-[20px]">
+        <h2 className="text-2xl font-semibold text-primary mb-[10px]">
           Jobs Management
         </h2>
         <p className="text-white">Track and manage field operations</p>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-4 border-b border-gray-800">
+      <div className="flex mb-[20px] border-b border-gray-800">
         <button
           onClick={() => setActiveTab("jobs")}
           className={`px-4 py-2 border-b-2 transition-colors ${
@@ -46,9 +46,9 @@ export const Jobs: React.FC = () => {
 
       {/* Content */}
       {activeTab === "jobs" ? (
-        <div className="space-y-6">
+        <div className="">
           {/* Search and Filters */}
-          <div className="flex flex-col sm:flex-row justify-between gap-4">
+          <div className="flex mb-[20px] flex-col sm:flex-row justify-between gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -74,6 +74,6 @@ export const Jobs: React.FC = () => {
       ) : (
         <JobOverview />
       )}
-    </div>
+    </>
   );
 };

@@ -70,20 +70,19 @@ export const Dashboard = () => {
   ];
 
   return (
-    <div className="space-y-4 p-2 lg:p-4">
+    <>
       {/* Header with User Name */}
-      <div className="mt-0">
-        <h1 className="text-2xl font-semibold text-primary">
+      <div className="mb-[20px]">
+        <h1 className="text-2xl font-semibold text-primary mb-[10px]">
           {user?.first_name && user?.last_name
             ? `${user.first_name} ${user.last_name}'s Dashboard`
             : "Dashboard"}
         </h1>
         <p className="text-white">Welcome back!</p>
       </div>
-
       {/* Error Message */}
       {error && (
-        <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 text-red-400">
+        <div className="bg-red-500/10 border mb-[10px] border-red-500/20 rounded-lg p-4 text-red-400">
           {error}
         </div>
       )}
@@ -97,7 +96,7 @@ export const Dashboard = () => {
       ) : (
         <>
           {/* Tabs */}
-          <div className="flex gap-4 border-b border-gray-800">
+          <div className="flex mb-[20px] border-b border-gray-800">
             <button
               onClick={() => setActiveTab("stats")}
               className={`px-4 py-2 border-b-2 transition-colors ${
@@ -138,6 +137,6 @@ export const Dashboard = () => {
           )}
         </>
       )}
-    </div>
+    </>
   );
 };

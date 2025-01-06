@@ -79,9 +79,19 @@ export const JobCard: React.FC<IJobCard> = ({ job }) => {
     <>
       <div
         onClick={() => setShowModal(true)}
-        className="w-full mb-4 rounded-[12px] sm:w-[calc(50%-20px)] 2xl:w-[calc(33.3%-20px)] sm:m-[10px] p-4 bg-bgSecondary hover:bg-bgSecondary/50 transition-all cursor-pointer"
+        className="group w-full mb-4 rounded-[12px] overflow-hidden sm:w-[calc(50%-20px)] 2xl:w-[calc(33.3%-20px)] sm:m-[10px] relative p-[1px] transition-all cursor-pointer"
       >
-        <div className="flex items-start justify-between">
+        <div
+          className={
+            "rounded-[12px] top-[0] left-[0]  duration-500 transition-all group-hover:rotate-180  w-full h-full absolute bg-gradient-to-br from-gradOne  to-bgSecondary/0 to-20%"
+          }
+        ></div>
+        <div
+          className={
+            "rounded-[12px] top-[0] left-[0] duration-500 transition-all group-hover:rotate-180  w-full h-full absolute bg-gradient-to-br from-bgSecondary/0   to-gradTwo from-80%"
+          }
+        ></div>
+        <div className="flex items-start justify-between p-4 bg-bgSecondary   relative h-full rounded-[12px]">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-2">
               <h3 className="font-medium truncate">{job.Ref}</h3>
