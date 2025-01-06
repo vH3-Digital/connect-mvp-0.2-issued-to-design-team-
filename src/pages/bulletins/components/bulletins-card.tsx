@@ -61,14 +61,14 @@ export default function BulletinsCard({
           "rounded-[12px] top-[0] left-[0]  duration-500 transition-all group-hover:rotate-180   w-full h-full absolute bg-gradient-to-br from-bgSecondary/0   to-gradTwo from-80%"
         }
       ></div>
-      <div className="bg-bgSecondary p-[32px] relative rounded-[12px]">
-        <div className="flex items-start justify-between">
-          <div className="flex items-start space-x-4">
-            <div className="p-2 bg-gray-700 rounded-lg">
+      <div className="bg-bgSecondary p-[16px] sm:p-[24px] md:p-[32px] relative rounded-[12px]">
+        <div className="flex flex-col  md:flex-row md:items-start md:justify-between">
+          <div className="flex items-start flex-col  sm:flex-row order-2 md:order-1">
+            <div className="p-2 bg-gray-700 rounded-lg mb-[10px] sm:mb-0">
               <FileText className="w-6 h-6 text-primary" />
             </div>
-            <div>
-              <div className="flex items-center gap-3">
+            <div className="sm:flex-1 sm:ml-2">
+              <div className=" gap-3">
                 <h3 className="font-medium">{itemData.title}</h3>
                 <span
                   className={`text-sm ${getStatusColor(
@@ -119,7 +119,7 @@ export default function BulletinsCard({
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 order-1 mb-4 md:order-2" >
             <span
               className={`px-3 py-1 rounded-full text-xs ${getPriorityColor(
                 itemData.priority

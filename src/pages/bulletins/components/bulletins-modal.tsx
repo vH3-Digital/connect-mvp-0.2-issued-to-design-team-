@@ -325,21 +325,24 @@ export const BulletinModal: React.FC<BulletinModalProps> = ({
         </Accordion>
         {/* Follow-up Configuration */}
         <Accordion title={"Follow-up Configuration"}>
-          <div className="grid grid-cols-2 gap-4">
-            <NumberField
-              type="number"
-              required={true}
-              placeholder="0"
-              label="Follow-up Days"
-              value={form.followUpDays}
-              onChange={(e) =>
-                setForm((prev) => ({
-                  ...prev,
-                  followUpDays: parseInt(e.target.value) || 0,
-                }))
-              }
-            />
-            <div>
+          <div className="sm:flex sm:justify-between">
+            <div className="mb-[10px] sm:mb-0 sm:w-[calc(50%-10px)]">
+              <NumberField
+                type="number"
+                required={true}
+                placeholder="0"
+                label="Follow-up Days"
+                value={form.followUpDays}
+                onChange={(e) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    followUpDays: parseInt(e.target.value) || 0,
+                  }))
+                }
+              />
+            </div>
+
+            <div className="w-full sm:w-[calc(50%-10px)]">
               <label className="block text-sm font-medium text-gray-400 mb-3">
                 Required Pass Rate (%)
               </label>

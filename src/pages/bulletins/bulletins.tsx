@@ -137,21 +137,24 @@ export const Bulletins: React.FC = () => {
   return (
     <>
       {/* Header */}
-      <div className="flex justify-between items-center mb-[20px]">
-        <div>
+      <div className="md:flex md:items-center md:justify-between mb-[20px]">
+        <div className="mb-[20px]">
           <h2 className="text-2xl font-semibold text-primary mb-[10px]">
             Technical & Safety Bulletins
           </h2>
           <p className="text-white">Manage and track bulletin updates</p>
         </div>
-        <div className="flex gap-3">
+
+        <div className="sm:flex sm:gap-3 ">
           <CustomButton
+            extraStyles={"mb-[10px] sm:mb-0 w-full sm:w-auto flex items-center justify-center"}
             styleType={"gray"}
             icon={<Upload className="w-5 h-5 mr-[6px] inline-block" />}
             title="Upload Document"
             onClick={() => setShowUploadModal(true)}
           />
           <CustomButton
+            extraStyles={" w-full sm:w-auto flex items-center justify-center"}
             styleType={"primary"}
             icon={<Plus className="w-5 h-5 mr-[6px]" />}
             title="Create Blank"
