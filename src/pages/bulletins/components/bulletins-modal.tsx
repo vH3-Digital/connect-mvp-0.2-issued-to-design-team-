@@ -527,7 +527,11 @@ export const BulletinModal: React.FC<BulletinModalProps> = ({
               title="Update Bulletin"
             />
           ) : (
-            <CustomButton onClick={() => {}} title="Create Bulletin" />
+            <CustomButton
+              styleType={"primary"}
+              onClick={() => {}}
+              title="Create Bulletin"
+            />
           )}
         </div>
       </form>
