@@ -20,6 +20,7 @@ export const Modal: React.FC<IModal> = ({
   const closeFunc = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (e.currentTarget === e.target && onClose) {
       onClose();
+      document.body.classList.remove("no-scroll");
     }
   };
   useEffect(() => {
