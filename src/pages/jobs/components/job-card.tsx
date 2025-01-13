@@ -178,13 +178,19 @@ export const JobCard: React.FC<IJobCard> = ({ job }) => {
       <AnimatePresence>
         <Modal
           isOpen={showModal}
-          onClose={() => setShowModal(false)}
+          onClose={() => {
+            document.body.classList.remove("no-scroll");
+            setShowModal(false);
+          }}
           title={`Job Details - ${job.Ref}`}
           size="lg"
         >
           <JobModal
             isOpen={showModal}
-            onClose={() => setShowModal(false)}
+            onClose={() => {
+              document.body.classList.remove("no-scroll");
+              setShowModal(false);
+            }}
             job={job}
           />
         </Modal>

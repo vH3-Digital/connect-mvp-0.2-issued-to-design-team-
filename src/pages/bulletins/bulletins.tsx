@@ -147,7 +147,9 @@ export const Bulletins: React.FC = () => {
 
         <div className="sm:flex sm:gap-3 ">
           <CustomButton
-            extraStyles={"mb-[10px] sm:mb-0 w-full sm:w-auto flex items-center justify-center"}
+            extraStyles={
+              "mb-[10px] sm:mb-0 w-full sm:w-auto flex items-center justify-center"
+            }
             styleType={"gray"}
             icon={<Upload className="w-5 h-5 mr-[6px] inline-block" />}
             title="Upload Document"
@@ -176,7 +178,10 @@ export const Bulletins: React.FC = () => {
       {/* Upload Modal */}
       <Modal
         isOpen={showUploadModal}
-        onClose={() => setShowUploadModal(false)}
+        onClose={() => {
+          setShowUploadModal(false);
+          document.body.classList.remove("no-scroll");
+        }}
         title="Upload Document"
         size="md"
       >
@@ -224,6 +229,7 @@ export const Bulletins: React.FC = () => {
         onClose={() => {
           setShowCreateModal(false);
           setSelectedBulletin(null);
+          document.body.classList.remove("no-scroll");
         }}
         bulletin={selectedBulletin || processedContent || undefined}
         uploadedFile={uploadedFile}

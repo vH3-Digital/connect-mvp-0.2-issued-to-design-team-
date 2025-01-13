@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { IJob, IJobList } from "../../../interfaces/interfaces";
 import { jobsApi } from "../../../services/jobs";
 import { JobCard } from "./job-card";
+import JobCardPlace from "./job-card-place";
+import { motion } from "framer-motion";
 
 export const JobList: React.FC<IJobList> = ({
   searchQuery,
@@ -49,9 +51,17 @@ export const JobList: React.FC<IJobList> = ({
 
   if (loading) {
     return (
-      <div className="flex justify-center py-12">
-        <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-      </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}
+        exit={{ opacity: 0 }}
+        className="flex flex-wrap sm:mx-[-10px]  "
+      >
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((index) => (
+          <JobCardPlace key={index} />
+        ))}
+      </motion.div>
     );
   }
 
@@ -74,10 +84,16 @@ export const JobList: React.FC<IJobList> = ({
   }
 
   return (
-    <div className="flex flex-wrap sm:mx-[-10px]  ">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
+      exit={{ opacity: 0 }}
+      className="flex flex-wrap sm:mx-[-10px]  "
+    >
       {filteredJobs.map((job) => (
         <JobCard key={job.JobId} job={job} />
       ))}
-    </div>
+    </motion.div>
   );
 };

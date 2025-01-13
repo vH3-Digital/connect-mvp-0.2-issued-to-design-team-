@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { UserProfile } from "./UserProfile";
 import { useAuth } from "../contexts/AuthContext";
+import { Modal } from "../widgets/modal/modal";
 
 interface SidebarProps {
   onNavigate: (view: string) => void;
@@ -155,11 +156,20 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNavigate, activeView }) => {
       {isMobileMenuOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-30 lg:hidden"
-          onClick={() => setIsMobileMenuOpen(false)}
+          onClick={() => {
+            setIsMobileMenuOpen(false);
+          }}
         />
       )}
-
-      <UserProfile isOpen={showProfile} onClose={() => setShowProfile(false)} />
+      {showProfile && (
+        <Modal
+          title="User asdf"
+          isOpen={showProfile}
+          onClose={() => setShowProfile(false)}
+        >
+          <UserProfile />
+        </Modal>
+      )}
     </>
   );
 };

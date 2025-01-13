@@ -3,14 +3,12 @@ export interface IModal {
   isOpen: boolean;
   onClose: () => void;
   title: string;
+  text?: string | null;
   children: React.ReactNode;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xlg";
 }
 
-export interface IUserProfile {
-  isOpen: boolean;
-  onClose: () => void;
-}
+
 // sidebar end
 // jobs page start
 export interface IJob {
@@ -111,3 +109,14 @@ export interface IBulletin {
   reportNotes?: string;
 }
 // bulletins end
+export interface IDocumentItem {
+  id: string;
+  doc_id: string;
+  name: string;
+  description: string;
+  category: string;
+  key_points: string;
+  message?: string;
+  user_id: number;
+  created_at: number;
+}

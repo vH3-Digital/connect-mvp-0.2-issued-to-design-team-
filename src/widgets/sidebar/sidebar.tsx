@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   LayoutDashboard,
-  FileText,
   Users,
   Briefcase,
   MessageSquare,
@@ -9,7 +8,6 @@ import {
   HelpCircle,
   Settings,
   AlertCircle,
-  Hexagon,
   Phone,
   GitBranch,
   MessageCircle,
@@ -23,6 +21,7 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import { useAuth } from "../../contexts/AuthContext";
 import { UserProfile } from "./components/user-profile";
+import { Modal } from "../modal/modal";
 
 interface SidebarProps {
   onNavigate: (view: string) => void;
@@ -109,7 +108,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNavigate, activeView }) => {
                         : "text-gray-400 hover:bg-primary/10"
                     }`}
                   >
-                    <item.icon className={`w-5 h-5 ${activeView === item.id ? "text-primary" : "text-gray-400"}`  } />
+                    <item.icon
+                      className={`w-5 h-5 ${
+                        activeView === item.id
+                          ? "text-primary"
+                          : "text-gray-400"
+                      }`}
+                    />
                     {item.label}
                   </button>
                 </li>
@@ -158,7 +163,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNavigate, activeView }) => {
           />
         )}
       </AnimatePresence>
-      <UserProfile isOpen={showProfile} onClose={() => setShowProfile(false)} />
+      <AnimatePresence>
+        {showProfile && (
+          <Modal
+            title="User asdf"
+            size="lg"
+            isOpen={showProfile}
+            onClose={() => {
+              setShowProfile(false);
+              document.body.classList.remove("no-scroll");
+            }}
+          >
+            <UserProfile />
+          </Modal>
+        )}
+      </AnimatePresence>
     </>
   );
 };

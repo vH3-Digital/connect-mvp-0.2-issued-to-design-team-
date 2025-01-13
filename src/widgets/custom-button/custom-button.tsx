@@ -8,7 +8,7 @@ const CustomButton = ({
   styleType,
 }: {
   title: string;
-  onClick: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   extraStyles?: string | null;
   icon?: ReactElement | null;
   styleType?: string | null;
